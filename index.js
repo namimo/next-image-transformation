@@ -57,6 +57,11 @@ async function resize(url) {
         })
     } catch (e) {
         console.log(e)
-        return new Response("Error resizing image")
+        const headers = new Headers();
+        headers.set("Cache-Control", "no-cache, no-store");
+        return new Response("Error resizing image", {
+            status: 500,
+            headers
+        })
     }
 }
